@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Anyone can create a request (submit the form)
+    match /requests/{requestId} {
+      allow create: if request.resource.data.keys().hasAll(['examName', 'message', 'email', 'status', 'createdAt'])
+                    && request.resource.data.status == 'pending';
+      allow read, update, delete: if true;  // Admin access (protected by password on client)
+    }
+    
+    // Anyone can read approved exams (they show on the main site)
+    // Only admin can write (protected by password on client)
+    match /approved_exams/{examId} {
+      allow read: if true;
+      allow write: if true;  // Protected by client-side admin password
+    }
+  }
+}

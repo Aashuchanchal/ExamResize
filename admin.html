@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExamResize — Admin Panel</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Admin-specific styles */
+    .admin-login{max-width:400px;margin:120px auto;padding:32px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-lg);text-align:center;backdrop-filter:blur(10px)}
+    .admin-login h2{margin-bottom:8px}
+    .admin-login p{color:var(--text-secondary);font-size:0.9rem;margin-bottom:20px}
+    .admin-login .form-group{margin-bottom:16px}
+    .admin-login input[type="password"]{text-align:center;font-size:1.1rem;letter-spacing:2px}
+    .admin-login .login-error{color:var(--error);font-size:0.85rem;margin-top:8px;display:none}
+
+    .admin-panel{display:none;padding:100px 0 60px}
+    .admin-panel.visible{display:block}
+    .admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:16px}
+    .admin-header h1{font-size:1.8rem}
+    .admin-stats{display:flex;gap:16px}
+    .admin-stat{padding:12px 20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md);text-align:center;min-width:100px}
+    .admin-stat-value{font-size:1.4rem;font-weight:700;font-family:'Outfit',sans-serif}
+    .admin-stat-label{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase}
+    .admin-stat.pending .admin-stat-value{color:var(--warning)}
+    .admin-stat.accepted .admin-stat-value{color:var(--success)}
+    .admin-stat.rejected .admin-stat-value{color:var(--error)}
+
+    .admin-tabs{display:flex;gap:8px;margin-bottom:2rem}
+    .admin-tab{padding:8px 20px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-xl);color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:all var(--transition)}
+    .admin-tab.active{background:var(--gradient-btn);color:#fff;border-color:transparent}
+    .admin-tab:hover:not(.active){background:rgba(99,102,241,0.1)}
+
+    .request-list{display:grid;gap:16px}
+    .request-card{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-lg);padding:24px;transition:all var(--transition)}
+    .request-card:hover{border-color:rgba(99,102,241,0.2)}
+    .request-card-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;gap:12px}
+    .request-exam-name{font-size:1.2rem;font-weight:700;font-family:'Outfit',sans-serif}
+    .request-status{padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;text-transform:uppercase}
+    .request-status.pending{background:rgba(245,158,11,0.15);color:var(--warning)}
+    .request-status.accepted{background:rgba(16,185,129,0.15);color:var(--success)}
+    .request-status.rejected{background:rgba(239,68,68,0.15);color:var(--error)}
+    .request-meta{display:flex;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+    .request-meta span{font-size:0.8rem;color:var(--text-muted)}
+    .request-message{font-size:0.9rem;color:var(--text-secondary);margin-bottom:16px;padding:12px;background:rgba(255,255,255,0.02);border-radius:var(--radius-sm);border-left:3px solid var(--accent-1)}
+    .request-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn-accept{padding:8px 20px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-radius:var(--radius-md);font-weight:600;font-size:0.85rem;transition:all var(--transition)}
+    .btn-accept:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(16,185,129,0.3)}
+    .btn-reject{padding:8px 20px;background:rgba(239,68,68,0.1);color:var(--error);border:1px solid rgba(239,68,68,0.3);border-radius:var(--radius-md);font-weight:600;font-size:0.85rem;transition:all var(--transition)}
+    .btn-reject:hover{background:rgba(239,68,68,0.2)}
+    .btn-ai{padding:8px 20px;background:rgba(139,92,246,0.1);color:var(--accent-3);border:1px solid rgba(139,92,246,0.3);border-radius:var(--radius-md);font-weight:600;font-size:0.85rem;transition:all var(--transition);display:flex;align-items:center;gap:6px}
+    .btn-ai:hover{background:rgba(139,92,246,0.2)}
+
+    /* Spec Editor Modal */
+    .spec-editor{display:none;margin-top:16px;padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--border-glass);border-radius:var(--radius-md)}
+    .spec-editor.visible{display:block}
+    .spec-editor h4{margin-bottom:16px;font-size:1rem}
+    .spec-editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .spec-editor-grid .form-group{margin-bottom:0}
+    .spec-editor-full{grid-column:1/-1}
+    .spec-editor .form-group input,.spec-editor .form-group select,.spec-editor .form-group textarea{padding:10px 12px;font-size:0.85rem}
+    .spec-editor .form-group label{font-size:0.75rem}
+    .ai-loading{display:flex;align-items:center;gap:10px;padding:16px;background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.2);border-radius:var(--radius-md);margin-bottom:16px;font-size:0.9rem;color:var(--accent-3)}
+    .doc-section{margin-top:16px;padding:16px;background:rgba(255,255,255,0.02);border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,0.05)}
+    .doc-section h5{margin-bottom:12px;color:var(--accent-3);font-size:0.9rem}
+    .save-spec-btn{margin-top:16px;width:100%;padding:12px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-radius:var(--radius-md);font-weight:600;transition:all var(--transition)}
+    .save-spec-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(16,185,129,0.3)}
+    .save-spec-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+
+    .empty-state{text-align:center;padding:60px 20px;color:var(--text-muted)}
+    .empty-state span{font-size:3rem;display:block;margin-bottom:12px}
+
+    .admin-logout{padding:8px 16px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-md);color:var(--text-secondary);font-size:0.85rem;transition:all var(--transition)}
+    .admin-logout:hover{background:rgba(239,68,68,0.1);color:var(--error);border-color:rgba(239,68,68,0.3)}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <div class="nav-logo" style="background:linear-gradient(135deg,#ef4444,#ec4899)">🔐</div>
+        <span>Exam<span style="color:var(--accent-3)">Resize</span> <span style="color:var(--text-muted);font-size:0.8rem">Admin</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">← Back to Site</a>
+        <button class="admin-logout" id="logout-btn">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login Gate -->
+  <div class="admin-login" id="login-gate">
+    <h2>🔐 Admin Access</h2>
+    <p>Enter the admin password to continue</p>
+    <form id="login-form">
+      <div class="form-group">
+        <input type="password" id="admin-password" placeholder="••••••••" required autocomplete="off">
+      </div>
+      <button type="submit" class="modal-submit-btn">Unlock Panel</button>
+      <p class="login-error" id="login-error">Incorrect password. Try again.</p>
+    </form>
+  </div>
+
+  <!-- Admin Panel -->
+  <div class="admin-panel" id="admin-panel">
+    <div class="container">
+      <div class="admin-header">
+        <h1>📋 Exam Requests</h1>
+        <div class="admin-stats">
+          <div class="admin-stat pending">
+            <div class="admin-stat-value" id="stat-pending">0</div>
+            <div class="admin-stat-label">Pending</div>
+          </div>
+          <div class="admin-stat accepted">
+            <div class="admin-stat-value" id="stat-accepted">0</div>
+            <div class="admin-stat-label">Accepted</div>
+          </div>
+          <div class="admin-stat rejected">
+            <div class="admin-stat-value" id="stat-rejected">0</div>
+            <div class="admin-stat-label">Rejected</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-tabs" id="admin-tabs">
+        <button class="admin-tab active" data-filter="pending">⏳ Pending</button>
+        <button class="admin-tab" data-filter="accepted">✅ Accepted</button>
+        <button class="admin-tab" data-filter="rejected">❌ Rejected</button>
+        <button class="admin-tab" data-filter="all">📋 All</button>
+      </div>
+
+      <div class="request-list" id="request-list"></div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/presets.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

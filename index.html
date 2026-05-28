@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExamResize — Photo &amp; Signature Resizer for Government Exams</title>
+  <meta name="description" content="Free online tool to resize photos and signatures for SSC CGL, CHSL, IBPS, UPSC, JEE, NEET, RRB and other Indian government exams. Client-side processing — your images never leave your browser.">
+  <meta name="keywords" content="SSC CGL photo resize, signature resize, exam photo, government exam image, IBPS photo, UPSC signature, JEE NEET photo resize">
+  <meta property="og:title" content="ExamResize — Photo & Signature Resizer for Government Exams">
+  <meta property="og:description" content="Resize photos and signatures to exact government exam specifications in seconds. Free, private, instant.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <div class="nav-logo">📐</div>
+        <span>Exam<span style="color:var(--accent-3)">Resize</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#exams">Exams</a>
+        <a href="#features">Features</a>
+        <button class="nav-contact-btn" id="open-request-btn">📩 Request Exam</button>
+        <span class="nav-badge">100% Free</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <canvas id="particle-canvas"></canvas>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-content container">
+      <h1>Resize Images for<br>Government Exams</h1>
+      <p>Instantly resize your photos &amp; signatures to exact specifications for SSC, IBPS, UPSC, JEE, NEET, RRB and more. 100% free, 100% private — nothing leaves your browser.</p>
+      <div class="hero-buttons">
+        <a href="#exams" class="cta-btn">🎯 Select Your Exam <span>↓</span></a>
+        <button class="cta-btn cta-btn-outline" id="open-request-hero">📩 Request an Exam</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value" id="exam-count">15+</div>
+          <div class="hero-stat-label">Exam Presets</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">100%</div>
+          <div class="hero-stat-label">Client-Side</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">0</div>
+          <div class="hero-stat-label">Data Uploaded</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exam Selector -->
+  <section class="exam-section" id="exams">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Choose Your Exam</h2>
+      <p class="section-subtitle animate-on-scroll">Select an exam to see its exact photo &amp; signature requirements</p>
+
+      <div class="search-bar animate-on-scroll">
+        <input type="text" id="exam-search" placeholder="Search exams... (SSC, IBPS, UPSC, JEE...)" autocomplete="off">
+      </div>
+
+      <div id="category-tabs" class="animate-on-scroll"></div>
+      <div id="exam-grid" class="animate-on-scroll"></div>
+
+      <div class="request-cta animate-on-scroll">
+        <p>Can't find your exam? <button class="inline-request-btn" id="open-request-inline">Request it here →</button></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Processor Section (hidden until exam selected) -->
+  <section id="processor-section">
+    <div class="container">
+      <div class="processor-header">
+        <h2 class="section-title">📸 Upload &amp; Process</h2>
+        <p class="section-subtitle">Upload your image and we'll resize it to the exact specifications</p>
+      </div>
+
+      <!-- Document Type Tabs -->
+      <div id="doc-type-tabs"></div>
+
+      <!-- Specifications Display -->
+      <div id="specs-display" class="animate-on-scroll"></div>
+
+      <!-- Upload & Result Grid -->
+      <div class="processor-grid">
+        <!-- Upload Card -->
+        <div class="upload-card">
+          <div class="card-header">
+            <h3 class="card-title">📤 Original Image</h3>
+          </div>
+          <div id="upload-zone">
+            <div id="upload-content">
+              <span class="upload-icon">☁️</span>
+              <div class="upload-text">
+                <strong>Drop your image here or click to browse</strong>
+                Supports JPEG, PNG, WebP, BMP
+              </div>
+              <div class="upload-hint">Your image is processed locally — it never leaves your device</div>
+              <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,image/bmp">
+              <img id="original-preview" alt="Original image preview">
+              <div id="original-info"></div>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button id="process-btn" disabled>⚡ Resize &amp; Compress</button>
+            <button id="reset-btn">🗑️ Reset</button>
+          </div>
+        </div>
+
+        <!-- Result Card -->
+        <div class="result-card" id="result-section">
+          <div class="card-header">
+            <h3 class="card-title">✅ Processed Result</h3>
+          </div>
+          <img id="result-preview" alt="Processed image preview">
+          <div id="result-info"></div>
+          <button id="download-btn" disabled>⬇️ Download Resized Image</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Why ExamResize?</h2>
+      <p class="section-subtitle animate-on-scroll">Built specifically for Indian government exam applicants</p>
+      <div class="features-grid">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon" style="background:rgba(99,102,241,0.1)">🔒</div>
+          <h3>100% Private</h3>
+          <p>All processing happens in your browser. Your images are never uploaded to any server — zero data leaves your device.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon" style="background:rgba(16,185,129,0.1)">⚡</div>
+          <h3>Instant Processing</h3>
+          <p>No waiting, no queues. Images are resized and compressed in milliseconds using your device's processing power.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon" style="background:rgba(245,158,11,0.1)">🎯</div>
+          <h3>Exact Specifications</h3>
+          <p>Pre-loaded with official specs for SSC, IBPS, UPSC, NTA, RRB and board exams. Always up to date.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon" style="background:rgba(236,72,153,0.1)">📏</div>
+          <h3>Smart Compression</h3>
+          <p>Our binary search algorithm adjusts JPEG quality to hit the exact file size range required by each exam.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon" style="background:rgba(6,182,212,0.1)">📱</div>
+          <h3>Works Everywhere</h3>
+          <p>Fully responsive — works on your phone, tablet, or desktop. No app download needed.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon" style="background:rgba(139,92,246,0.1)">📩</div>
+          <h3>Request Any Exam</h3>
+          <p>Can't find your exam? Submit a request and our team will add it with AI-verified specifications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-brand">Exam<span style="color:var(--accent-3)">Resize</span> — Free Image Resizer for Government Exams</p>
+      <p class="footer-credit">Designed &amp; Deployed by <strong>Aashutosh Tiwari</strong></p>
+      <p class="footer-disclaimer">⚠️ Disclaimer: Always verify specifications from the official exam notification. Requirements may change between exam cycles. This tool is provided as-is for convenience.</p>
+    </div>
+  </footer>
+
+  <!-- Request Exam Modal -->
+  <div class="modal-overlay" id="request-modal">
+    <div class="modal">
+      <button class="modal-close" id="close-request-modal">&times;</button>
+      <div class="modal-header">
+        <h2>📩 Request an Exam</h2>
+        <p>Can't find your exam? Let us know and we'll add it!</p>
+      </div>
+      <form id="request-form" class="modal-form">
+        <div class="form-group">
+          <label for="req-exam-name">Exam Name *</label>
+          <input type="text" id="req-exam-name" placeholder="e.g., GATE CS, SSC GD, NDA..." required>
+        </div>
+        <div class="form-group">
+          <label for="req-email">Your Email *</label>
+          <input type="email" id="req-email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="req-message">Additional Details</label>
+          <textarea id="req-message" rows="3" placeholder="Any specific requirements or links to official notification..."></textarea>
+        </div>
+        <button type="submit" class="modal-submit-btn" id="req-submit-btn">
+          <span>🚀 Submit Request</span>
+        </button>
+        <p class="form-hint">We'll review your request and add the exam specifications shortly.</p>
+      </form>
+      <div id="request-success" class="modal-success" style="display:none">
+        <span class="success-icon">✅</span>
+        <h3>Request Submitted!</h3>
+        <p>We'll review your request and add the exam specs soon. Thank you!</p>
+        <button class="modal-submit-btn" onclick="document.getElementById('request-modal').classList.remove('active')">Got it!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Firebase SDK (compat for simplicity) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <!-- App Scripts -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/presets.js"></script>
+  <script src="js/processor.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
