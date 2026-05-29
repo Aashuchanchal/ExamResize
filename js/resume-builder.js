@@ -13,7 +13,8 @@
     { id: 'education', label: '🎓 Education', title: 'Education', desc: 'Add your academic background' },
     { id: 'experience', label: '💼 Experience', title: 'Work Experience', desc: 'List your professional experience' },
     { id: 'skills', label: '⚡ Skills', title: 'Skills & Extras', desc: 'Technical skills, languages, and summary' },
-    { id: 'projects', label: '🚀 Projects', title: 'Projects', desc: 'Showcase your best work (optional)' }
+    { id: 'projects', label: '🚀 Projects', title: 'Projects', desc: 'Showcase your best work (optional)' },
+    { id: 'certificates', label: '🏆 Certificates', title: 'Certifications & Awards', desc: 'Add licenses, certifications, or awards (optional)' }
   ];
 
   const TEMPLATES = [
@@ -34,14 +35,19 @@
       education: [],
       experience: [],
       skills: [],
-      projects: []
+      projects: [],
+      certificates: []
     };
   }
 
   function loadDraft() {
     try {
       const d = JSON.parse(localStorage.getItem('examresize_resume_draft'));
-      return d && d.personal ? d : defaultData();
+      if (d && d.personal) {
+        if (!d.certificates) d.certificates = [];
+        return d;
+      }
+      return defaultData();
     } catch { return defaultData(); }
   }
 
@@ -160,10 +166,19 @@
         { key: 'link', label: 'Link (optional)', ph: 'github.com/user/project' }
       ]);
     }
+    if (id === 'certificates') {
+      return renderRepeatable(resumeData.certificates, 'cert', [
+        { key: 'name', label: 'Certificate / Award Name', ph: 'AWS Solutions Architect Associate' },
+        { key: 'issuer', label: 'Issuing Organization', ph: 'Amazon Web Services' },
+        { key: 'date', label: 'Date Issued', ph: 'March 2024' },
+        { key: 'credentialId', label: 'Credential ID / Link (optional)', ph: 'ABC-123 or verify URL' }
+      ]);
+    }
     return '';
   }
 
   function renderRepeatable(items, prefix, fields) {
+    const labels = { edu: 'Education', exp: 'Experience', proj: 'Project', cert: 'Certificate' };
     let html = '<div id="rb-' + prefix + '-list">';
     items.forEach((item, i) => {
       html += `<div class="rb-item-card"><button class="rb-remove-btn" data-prefix="${prefix}" data-idx="${i}">×</button>`;
@@ -177,7 +192,7 @@
       html += '</div>';
     });
     html += '</div>';
-    html += `<button class="rb-add-btn" data-prefix="${prefix}">+ Add ${prefix === 'edu' ? 'Education' : prefix === 'exp' ? 'Experience' : 'Project'}</button>`;
+    html += `<button class="rb-add-btn" data-prefix="${prefix}">+ Add ${labels[prefix] || 'Item'}</button>`;
     return html;
   }
 
@@ -208,14 +223,14 @@
     // Add buttons for repeatable sections
     $$('.rb-add-btn').forEach((b) => b.addEventListener('click', (e) => {
       const p = e.target.dataset.prefix;
-      const arr = p === 'edu' ? resumeData.education : p === 'exp' ? resumeData.experience : resumeData.projects;
+      const arr = getArrayByPrefix(p);
       arr.push({});
       renderStepContent(); bindStepEvents(id); renderPreview();
     }));
     // Remove buttons
     $$('.rb-remove-btn').forEach((b) => b.addEventListener('click', (e) => {
       const p = e.currentTarget.dataset.prefix;
-      const arr = p === 'edu' ? resumeData.education : p === 'exp' ? resumeData.experience : resumeData.projects;
+      const arr = getArrayByPrefix(p);
       arr.splice(parseInt(e.currentTarget.dataset.idx), 1);
       renderStepContent(); bindStepEvents(id); renderPreview();
     }));
@@ -228,6 +243,14 @@
     });
   }
 
+  function getArrayByPrefix(p) {
+    if (p === 'edu') return resumeData.education;
+    if (p === 'exp') return resumeData.experience;
+    if (p === 'proj') return resumeData.projects;
+    if (p === 'cert') return resumeData.certificates;
+    return [];
+  }
+
   // ── Collect Data ──
   function collectCurrentStep() {
     const id = STEPS[currentStep].id;
@@ -237,9 +260,10 @@
         if (el) resumeData.personal[k] = el.value;
       });
     }
-    if (id === 'education' || id === 'experience' || id === 'projects') {
-      const prefix = id === 'education' ? 'edu' : id === 'experience' ? 'exp' : 'proj';
-      const arr = id === 'education' ? resumeData.education : id === 'experience' ? resumeData.experience : resumeData.projects;
+    if (['education', 'experience', 'projects', 'certificates'].includes(id)) {
+      const prefixMap = { education: 'edu', experience: 'exp', projects: 'proj', certificates: 'cert' };
+      const prefix = prefixMap[id];
+      const arr = getArrayByPrefix(prefix);
       $$('.rb-rep-field').forEach((f) => {
         if (f.dataset.prefix === prefix) {
           const idx = parseInt(f.dataset.idx);
@@ -258,6 +282,19 @@
     container.innerHTML = buildResumeHTML(d, tpl);
   }
 
+  function buildCertificatesHTML(certs) {
+    if (!certs || certs.length === 0) return '';
+    return `<div class="r-section"><div class="r-section-title">Certifications & Awards</div>${certs.map((c) => `
+      <div class="r-entry">
+        <div class="r-entry-header">
+          <span class="r-entry-title">${esc(c.name || '')}</span>
+          <span class="r-entry-date">${esc(c.date || '')}</span>
+        </div>
+        <div class="r-entry-sub">${esc(c.issuer || '')}</div>
+        ${c.credentialId ? `<div style="font-size:9px;color:#888;margin-top:2px">ID: ${esc(c.credentialId)}</div>` : ''}
+      </div>`).join('')}</div>`;
+  }
+
   function buildResumeHTML(d, tpl) {
     const p = d.personal;
     const contactItems = [p.email, p.phone, p.location, p.linkedin, p.website].filter(Boolean);
@@ -271,6 +308,7 @@
           <div class="r-contact">${contactItems.map((c) => `<div>${esc(c)}</div>`).join('')}</div>
           ${d.skills.length ? `<div class="r-section-title">Skills</div><div class="r-skills-list">${d.skills.map((s) => `<span class="r-skill">${esc(s)}</span>`).join('')}</div>` : ''}
           ${d.education.length ? `<div class="r-section-title">Education</div>${d.education.map((e) => `<div style="margin-bottom:10px"><div style="font-weight:600;font-size:10px;color:#fff">${esc(e.degree || '')}</div><div style="font-size:9px;color:#bbb">${esc(e.institution || '')}</div><div style="font-size:9px;color:#888">${esc(e.year || '')} ${e.grade ? '• ' + esc(e.grade) : ''}</div></div>`).join('')}` : ''}
+          ${d.certificates && d.certificates.length ? `<div class="r-section-title">Certifications</div>${d.certificates.map((c) => `<div style="margin-bottom:8px"><div style="font-weight:600;font-size:10px;color:#fff">${esc(c.name || '')}</div><div style="font-size:9px;color:#bbb">${esc(c.issuer || '')}</div><div style="font-size:9px;color:#888">${esc(c.date || '')}</div></div>`).join('')}` : ''}
         </div>
         <div class="r-main">
           ${p.summary ? `<div class="r-section"><div class="r-section-title">Summary</div><p style="font-size:10.5px;color:#444">${esc(p.summary)}</p></div>` : ''}
@@ -290,7 +328,8 @@
       ${d.experience.length ? `<div class="r-section"><div class="r-section-title">Experience</div>${d.experience.map((e) => `<div class="r-entry"><div class="r-entry-header"><span class="r-entry-title">${esc(e.role || '')}</span><span class="r-entry-date">${esc(e.duration || '')}</span></div><div class="r-entry-sub">${esc(e.company || '')}</div>${e.description ? `<div class="r-entry-desc" style="white-space:pre-line">${esc(e.description)}</div>` : ''}</div>`).join('')}</div>` : ''}
       ${d.education.length ? `<div class="r-section"><div class="r-section-title">Education</div>${d.education.map((e) => `<div class="r-entry"><div class="r-entry-header"><span class="r-entry-title">${esc(e.degree || '')}</span><span class="r-entry-date">${esc(e.year || '')}</span></div><div class="r-entry-sub">${esc(e.institution || '')}${e.grade ? ' — ' + esc(e.grade) : ''}</div></div>`).join('')}</div>` : ''}
       ${d.skills.length ? `<div class="r-section"><div class="r-section-title">Skills</div><div class="r-skills-list">${d.skills.map((s) => `<span class="r-skill">${esc(s)}</span>`).join('')}</div></div>` : ''}
-      ${d.projects.length ? `<div class="r-section"><div class="r-section-title">Projects</div>${d.projects.map((pr) => `<div class="r-entry"><div class="r-entry-title">${esc(pr.name || '')}${pr.tech ? ` <span style="font-size:9px;color:#888">(${esc(pr.tech)})</span>` : ''}</div>${pr.description ? `<div class="r-entry-desc" style="white-space:pre-line">${esc(pr.description)}</div>` : ''}${pr.link ? `<div style="font-size:9px;color:#6366f1;margin-top:2px">${esc(pr.link)}</div>` : ''}</div>`).join('')}</div>` : ''}`;
+      ${d.projects.length ? `<div class="r-section"><div class="r-section-title">Projects</div>${d.projects.map((pr) => `<div class="r-entry"><div class="r-entry-title">${esc(pr.name || '')}${pr.tech ? ` <span style="font-size:9px;color:#888">(${esc(pr.tech)})</span>` : ''}</div>${pr.description ? `<div class="r-entry-desc" style="white-space:pre-line">${esc(pr.description)}</div>` : ''}${pr.link ? `<div style="font-size:9px;color:#6366f1;margin-top:2px">${esc(pr.link)}</div>` : ''}</div>`).join('')}</div>` : ''}
+      ${buildCertificatesHTML(d.certificates)}`;
   }
 
   // ── PDF Download ──

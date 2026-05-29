@@ -12,7 +12,7 @@ const FIREBASE_CONFIG = {
   projectId: "examresize",
   storageBucket: "examresize.firebasestorage.app",
   messagingSenderId: "102110974636",
-  appId: "1:102110974636:web:f4922b67d6a441aaaac509"
+  appId: "1:102110974636:web:f4922b67d6a441aaaac509",
   measurementId: "G-38G0VEEYGS"
 };
 

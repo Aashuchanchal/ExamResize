@@ -24,32 +24,82 @@
 
   <div class="jobs-hero">
     <h1>💼 Job Portal</h1>
-    <p>Search jobs, internships & freelance projects from top platforms. Click "Apply" to go directly to the application.</p>
+    <p>Search jobs, internships & freelance projects from top platforms. Find your dream role right here.</p>
   </div>
 
   <!-- Search -->
   <div class="jobs-search">
     <div class="jobs-search-inner">
-      <input type="text" id="job-query" placeholder="Job title, skill, or keyword...">
-      <input type="text" id="job-location" placeholder="Location (e.g., Delhi, Remote)">
+      <div class="autocomplete-wrap">
+        <input type="text" id="job-query" placeholder="Job title, skill, or keyword..." autocomplete="off">
+        <div class="autocomplete-list" id="query-suggestions"></div>
+      </div>
+      <div class="autocomplete-wrap">
+        <input type="text" id="job-location" placeholder="Location (e.g., Delhi, Remote)" autocomplete="off">
+        <div class="autocomplete-list" id="location-suggestions"></div>
+      </div>
       <select id="job-type">
         <option value="">All Types</option>
         <option value="fulltime">Full-time</option>
         <option value="parttime">Part-time</option>
         <option value="intern">Internship</option>
         <option value="freelance">Freelance</option>
-        <option value="remote">Remote</option>
+        <option value="remote">Remote Only</option>
       </select>
       <button class="jobs-search-btn" id="job-search-btn">🔍 Search</button>
     </div>
   </div>
 
+  <!-- Advanced Filters -->
+  <div class="jobs-filters" id="jobs-filters">
+    <div class="filter-group">
+      <label>💰 Salary Range</label>
+      <select id="filter-salary">
+        <option value="">Any Salary</option>
+        <option value="3">3+ LPA</option>
+        <option value="5">5+ LPA</option>
+        <option value="10">10+ LPA</option>
+        <option value="15">15+ LPA</option>
+        <option value="25">25+ LPA</option>
+        <option value="50">50+ LPA</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>📍 Work Mode</label>
+      <div class="filter-chips">
+        <button class="filter-chip active" data-mode="">All</button>
+        <button class="filter-chip" data-mode="onsite">🏢 On-site</button>
+        <button class="filter-chip" data-mode="remote">🌐 Remote</button>
+        <button class="filter-chip" data-mode="hybrid">🔄 Hybrid</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <label>📅 Date Posted</label>
+      <select id="filter-date">
+        <option value="month">Past Month</option>
+        <option value="week">Past Week</option>
+        <option value="3days">Past 3 Days</option>
+        <option value="today">Today</option>
+        <option value="all">Any Time</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>📊 Experience</label>
+      <select id="filter-exp">
+        <option value="">Any</option>
+        <option value="no_experience">Fresher</option>
+        <option value="under_3_years">0-3 Years</option>
+        <option value="more_than_3_years">3+ Years</option>
+      </select>
+    </div>
+  </div>
+
   <!-- Platform Direct Search -->
   <div class="jobs-platforms" id="job-platforms">
-    <a class="platform-link" id="pl-naukri" href="#" target="_blank" rel="noopener">🟠 Search on Naukri</a>
-    <a class="platform-link" id="pl-linkedin" href="#" target="_blank" rel="noopener">🔵 Search on LinkedIn</a>
-    <a class="platform-link" id="pl-indeed" href="#" target="_blank" rel="noopener">🟣 Search on Indeed</a>
-    <a class="platform-link" id="pl-ambitionbox" href="#" target="_blank" rel="noopener">🟢 AmbitionBox Reviews</a>
+    <a class="platform-link" id="pl-naukri" href="#" target="_blank" rel="noopener">🟠 Find on Naukri</a>
+    <a class="platform-link" id="pl-linkedin" href="#" target="_blank" rel="noopener">🔵 Find on LinkedIn</a>
+    <a class="platform-link" id="pl-indeed" href="#" target="_blank" rel="noopener">🟣 Find on Indeed</a>
+    <a class="platform-link" id="pl-ambitionbox" href="#" target="_blank" rel="noopener">🟢 AmbitionBox</a>
     <a class="platform-link" id="pl-internshala" href="#" target="_blank" rel="noopener">🔷 Internshala</a>
   </div>
 
@@ -59,6 +109,9 @@
     <button class="jobs-tab" data-tab="saved">💾 Saved Jobs (<span id="saved-count">0</span>)</button>
   </div>
 
+  <!-- Results Count -->
+  <div class="jobs-result-info" id="jobs-result-info" style="display:none"></div>
+
   <!-- Job Grid -->
   <div class="jobs-grid" id="jobs-grid"></div>
 
@@ -66,7 +119,7 @@
   <button class="jobs-load-more" id="jobs-load-more" style="display:none">Load More Jobs</button>
 
   <div data-ad-slot="footer-banner" style="display:none;max-width:900px;margin:0 auto 24px;padding:0 24px"></div>
-  <footer class="footer"><div class="container"><p class="footer-brand">Exam<span style="color:var(--accent-3)">Resize</span> — Free Career Toolkit</p><p class="footer-credit">Designed &amp; Deployed by <strong>Aashutosh Tiwari</strong></p></div></footer>
+  <footer class="footer"><div class="container"><p class="footer-brand">Exam<span style="color:var(--accent-3)">Resize</span> — Free Career Toolkit</p><div class="footer-links"><a href="index.html">Image Resizer</a><a href="resume-builder.html">Resume Builder</a><a href="resume-score.html">ATS Score</a><a href="jobs.html">Jobs</a><a href="marketplace.html">Deals</a></div><p class="footer-credit">Designed &amp; Deployed by <strong>Aashutosh Tiwari</strong></p></div></footer>
   <div id="toast-container"></div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
