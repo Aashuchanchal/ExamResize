@@ -7,25 +7,25 @@
  */
 
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyAFyjOcH_1OhikiEGPXnzJDTdnQ0CdeDR0",
-  authDomain: "examresize.firebaseapp.com",
-  projectId: "examresize",
-  storageBucket: "examresize.firebasestorage.app",
-  messagingSenderId: "102110974636",
-  appId: "1:102110974636:web:f4922b67d6a441aaaac509",
-  measurementId: "G-38G0VEEYGS"
+  apiKey: "ENTER YOUR API",
+  authDomain: "DOMAIN.firebaseapp.com",
+  projectId: "_______",
+  storageBucket: "_________.firebasestorage.app",
+  messagingSenderId: "_________",
+  appId: "_______",
+  measurementId: "______"
 };
 
 // Gemini API Key for AI-powered exam spec autofill (admin panel only)
 const GEMINI_API_KEY = "PASTE_YOUR_GEMINI_API_KEY_HERE";
 
 // Admin password for admin panel access
-const ADMIN_PASSWORD = "examresize@admin2026";
+const ADMIN_PASSWORD = "________";
 
 // ── Job Portal API Keys ──
 // JSearch (RapidAPI) — aggregates LinkedIn, Indeed, Glassdoor, ZipRecruiter
 // Get free key at: https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch
-const JSEARCH_API_KEY = "7d27738e11mshf389f6b9c2ad098p13f720jsn60e4def205f2";
+const JSEARCH_API_KEY = "_________";
 
 // ── Firebase Instances ──
 let firebaseApp = null;
