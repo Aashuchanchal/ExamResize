@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin.html
 Disallow: /js/firebase-config.js
 
-Sitemap: https://YOUR_DOMAIN/sitemap.xml
+Sitemap: https://examresize.web.app/sitemap.xml

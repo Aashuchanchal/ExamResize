@@ -7,12 +7,13 @@
  */
 
 const FIREBASE_CONFIG = {
-  apiKey: "PASTE_YOUR_API_KEY_HERE",
-  authDomain: "PASTE_YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "PASTE_YOUR_PROJECT_ID",
-  storageBucket: "PASTE_YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "PASTE_YOUR_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
+  apiKey: "AIzaSyAFyjOcH_1OhikiEGPXnzJDTdnQ0CdeDR0",
+  authDomain: "examresize.firebaseapp.com",
+  projectId: "examresize",
+  storageBucket: "examresize.firebasestorage.app",
+  messagingSenderId: "102110974636",
+  appId: "1:102110974636:web:f4922b67d6a441aaaac509"
+  measurementId: "G-38G0VEEYGS"
 };
 
 // Gemini API Key for AI-powered exam spec autofill (admin panel only)
