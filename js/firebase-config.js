@@ -25,7 +25,7 @@ const ADMIN_PASSWORD = "examresize@admin2026";
 // ── Job Portal API Keys ──
 // JSearch (RapidAPI) — aggregates LinkedIn, Indeed, Glassdoor, ZipRecruiter
 // Get free key at: https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch
-const JSEARCH_API_KEY = "PASTE_YOUR_RAPIDAPI_KEY_HERE";
+const JSEARCH_API_KEY = "7d27738e11mshf389f6b9c2ad098p13f720jsn60e4def205f2";
 
 // ── Firebase Instances ──
 let firebaseApp = null;
