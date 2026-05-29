@@ -1,0 +1,51 @@
+/* ═══ Resume Score Checker Styles ═══ */
+.rs-hero{padding:110px 24px 40px;text-align:center;max-width:800px;margin:0 auto}
+.rs-hero h1{font-size:2.5rem;font-weight:800;background:var(--gradient-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.rs-hero p{color:var(--text-secondary);font-size:1.05rem}
+
+.rs-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1200px;margin:0 auto;padding:0 24px 40px}
+@media(max-width:768px){.rs-layout{grid-template-columns:1fr}}
+
+.rs-panel{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-lg);padding:24px;backdrop-filter:blur(10px)}
+.rs-panel h3{font-size:1.1rem;margin-bottom:4px}
+.rs-panel .panel-desc{font-size:0.8rem;color:var(--text-muted);margin-bottom:16px}
+.rs-panel textarea{width:100%;min-height:220px;padding:14px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-md);color:var(--text-primary);font-family:'Inter',monospace;font-size:0.85rem;line-height:1.6;resize:vertical;transition:border-color 0.3s}
+.rs-panel textarea:focus{border-color:var(--accent-1);box-shadow:0 0 0 3px rgba(99,102,241,0.15);outline:none}
+.rs-panel textarea::placeholder{color:var(--text-muted)}
+
+.rs-analyze-btn{display:block;width:100%;max-width:400px;margin:24px auto 40px;padding:16px 32px;background:var(--gradient-btn);color:#fff;border:none;border-radius:var(--radius-xl);font-size:1.1rem;font-weight:700;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px}
+.rs-analyze-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.4)}
+.rs-analyze-btn:disabled{opacity:0.5;transform:none;cursor:not-allowed}
+
+/* Score Dashboard */
+.rs-results{max-width:1200px;margin:0 auto;padding:0 24px 60px;display:none}
+.rs-results.visible{display:block}
+.rs-score-hero{text-align:center;margin-bottom:32px}
+.rs-gauge{position:relative;width:200px;height:200px;margin:0 auto 16px;border-radius:50%}
+.rs-gauge-circle{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:3rem;font-weight:800;transition:background 1s ease}
+.rs-score-label{font-size:1.2rem;font-weight:600;margin-top:8px}
+.rs-score-grade{display:inline-block;padding:4px 16px;border-radius:20px;font-size:0.85rem;font-weight:700;margin-top:8px}
+
+.rs-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px}
+.rs-metric{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-lg);padding:20px;text-align:center}
+.rs-metric-value{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800}
+.rs-metric-label{font-size:0.8rem;color:var(--text-muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.5px}
+.rs-metric-bar{height:6px;background:rgba(255,255,255,0.08);border-radius:3px;margin-top:10px;overflow:hidden}
+.rs-metric-bar-fill{height:100%;border-radius:3px;transition:width 1s ease}
+
+.rs-suggestions{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-lg);padding:24px}
+.rs-suggestions h3{margin-bottom:16px;font-size:1.1rem}
+.rs-suggestion{display:flex;gap:12px;padding:12px;margin-bottom:8px;background:rgba(255,255,255,0.03);border-radius:var(--radius-md);border-left:3px solid var(--accent-1)}
+.rs-suggestion.good{border-left-color:var(--success)}
+.rs-suggestion.warn{border-left-color:var(--warning)}
+.rs-suggestion.bad{border-left-color:var(--error)}
+.rs-suggestion-icon{font-size:1.2rem;flex-shrink:0}
+.rs-suggestion-text{font-size:0.85rem;color:var(--text-secondary)}
+.rs-suggestion-text strong{color:var(--text-primary);display:block;margin-bottom:2px}
+
+.rs-keywords{margin-top:24px}
+.rs-keywords h4{font-size:0.95rem;margin-bottom:12px}
+.rs-kw-list{display:flex;flex-wrap:wrap;gap:6px}
+.rs-kw{padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:500}
+.rs-kw.found{background:rgba(16,185,129,0.12);color:var(--success)}
+.rs-kw.missing{background:rgba(239,68,68,0.12);color:var(--error)}

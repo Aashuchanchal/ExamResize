@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATS Resume Builder — Create Professional Resumes Free | ExamResize</title>
+  <meta name="description" content="Build ATS-optimized resumes for free. Choose from 4 premium templates, fill your details, and download a professional PDF resume instantly. 100% private — your data never leaves your browser.">
+  <meta name="keywords" content="ATS resume builder, free resume maker, professional resume template, resume PDF download, ATS friendly resume, resume for freshers, resume for jobs India">
+  <meta property="og:title" content="ATS Resume Builder — Create Professional Resumes Free">
+  <meta property="og:description" content="Build ATS-optimized resumes with premium templates. Free, private, instant PDF download.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ATS Resume Builder — ExamResize">
+  <link rel="canonical" href="https://examresize.web.app/resume-builder.html">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/resume-builder.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"ATS Resume Builder","description":"Build ATS-optimized resumes for free with premium templates.","applicationCategory":"BusinessApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"author":{"@type":"Person","name":"Aashutosh Tiwari"}}
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none">
+          <div class="nav-logo">📐</div>
+          <span>Exam<span style="color:var(--accent-3)">Resize</span></span>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Image Resizer</a>
+        <a href="resume-builder.html" class="nav-active">Resume Builder</a>
+        <a href="resume-score.html">ATS Score</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="marketplace.html">Deals</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Layout -->
+  <div class="rb-layout">
+    <!-- Left: Form Panel -->
+    <div class="rb-form-panel" id="rb-form-panel">
+      <!-- Progress -->
+      <div class="rb-progress" id="rb-progress"></div>
+      <div class="rb-steps" id="rb-steps"></div>
+
+      <!-- Step Content (injected by JS) -->
+      <div id="rb-step-content"></div>
+
+      <!-- Navigation -->
+      <div class="rb-nav" id="rb-nav"></div>
+    </div>
+
+    <!-- Right: Preview Panel -->
+    <div class="rb-preview-panel">
+      <div class="rb-preview-toolbar">
+        <span>📄 Live Preview</span>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="rb-save-indicator" id="rb-save-status">💾 Auto-saved</span>
+          <button class="rb-download-btn" id="rb-download-btn">⬇️ Download PDF</button>
+        </div>
+      </div>
+      <div class="rb-preview-frame" id="rb-preview-frame">
+        <div id="rb-resume-preview"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ad Slot -->
+  <div data-ad-slot="footer-banner" style="display:none;max-width:1200px;margin:0 auto 24px;padding:0 24px"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-brand">Exam<span style="color:var(--accent-3)">Resize</span> — Free Career Toolkit</p>
+      <p class="footer-credit">Designed &amp; Deployed by <strong>Aashutosh Tiwari</strong></p>
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/ad-renderer.js"></script>
+  <script src="js/resume-builder.js"></script>
+
+  <script>if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');</script>
+</body>
+</html>

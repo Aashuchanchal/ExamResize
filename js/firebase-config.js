@@ -21,12 +21,19 @@ const GEMINI_API_KEY = "PASTE_YOUR_GEMINI_API_KEY_HERE";
 // Admin password for admin panel access
 const ADMIN_PASSWORD = "examresize@admin2026";
 
+// ── Job Portal API Keys ──
+// JSearch (RapidAPI) — aggregates LinkedIn, Indeed, Glassdoor, ZipRecruiter
+// Get free key at: https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch
+const JSEARCH_API_KEY = "PASTE_YOUR_RAPIDAPI_KEY_HERE";
+
+// ── Firebase Instances ──
 let firebaseApp = null;
 let db = null;
 let firebaseReady = false;
 
 function initFirebase() {
   try {
+    if (firebaseApp) return true;
     if (FIREBASE_CONFIG.apiKey === "PASTE_YOUR_API_KEY_HERE") {
       console.warn('Firebase not configured. Request feature will be disabled.');
       return false;

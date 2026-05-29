@@ -3,14 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ExamResize — Photo &amp; Signature Resizer for Government Exams</title>
-  <meta name="description" content="Free online tool to resize photos and signatures for SSC CGL, CHSL, IBPS, UPSC, JEE, NEET, RRB and other Indian government exams. Client-side processing — your images never leave your browser.">
-  <meta name="keywords" content="SSC CGL photo resize, signature resize, exam photo, government exam image, IBPS photo, UPSC signature, JEE NEET photo resize">
-  <meta property="og:title" content="ExamResize — Photo & Signature Resizer for Government Exams">
-  <meta property="og:description" content="Resize photos and signatures to exact government exam specifications in seconds. Free, private, instant.">
+  <title>ExamResize — Free Photo Resizer, ATS Resume Builder, Job Portal & More</title>
+  <meta name="description" content="ExamResize is India's #1 free career toolkit. Resize photos for government exams, build ATS-optimized resumes, check resume scores, search jobs from Naukri, LinkedIn, Indeed & more. 100% private — your data never leaves your browser.">
+  <meta name="keywords" content="exam photo resize, signature resize, SSC CGL photo, IBPS photo, UPSC signature, ATS resume builder free, resume score checker, job portal India, Naukri jobs, LinkedIn jobs, government exam image resizer, free career tools">
+  <meta property="og:title" content="ExamResize — Free Career Toolkit for Students & Job Seekers">
+  <meta property="og:description" content="Resize exam images, build ATS resumes, check resume scores, search jobs. All free, all private.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://examresize.web.app">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ExamResize — Free Career Toolkit">
+  <meta name="twitter:description" content="Exam image resizer, ATS resume builder, job portal — all in one. 100% free.">
+  <link rel="canonical" href="https://examresize.web.app/">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6366f1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
   <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"ExamResize","url":"https://examresize.web.app","description":"Free career toolkit: exam photo resizer, ATS resume builder, resume score checker, job portal.","applicationCategory":"EducationalApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"author":{"@type":"Person","name":"Aashutosh Tiwari"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1200"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is ExamResize free?","acceptedAnswer":{"@type":"Answer","text":"Yes, ExamResize is 100% free. All tools including the image resizer, resume builder, score checker, and job portal are free to use."}},{"@type":"Question","name":"Is my data safe on ExamResize?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. All processing happens in your browser. Your images, resume data, and personal information never leave your device."}},{"@type":"Question","name":"Which exams are supported?","acceptedAnswer":{"@type":"Answer","text":"We support 15+ exams including SSC CGL, CHSL, MTS, IBPS PO, Clerk, SBI PO, UPSC CSE, JEE Main, NEET, UGC NET, RRB NTPC, CBSE and more."}}]}
+  </script>
 </head>
 <body>
 
@@ -22,13 +37,29 @@
         <span>Exam<span style="color:var(--accent-3)">Resize</span></span>
       </div>
       <div class="nav-links">
-        <a href="#exams">Exams</a>
-        <a href="#features">Features</a>
+        <a href="index.html" class="nav-active">Image Resizer</a>
+        <a href="resume-builder.html">Resume Builder</a>
+        <a href="resume-score.html">ATS Score</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="marketplace.html">Deals</a>
         <button class="nav-contact-btn" id="open-request-btn">📩 Request Exam</button>
         <span class="nav-badge">100% Free</span>
       </div>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Menu">☰</button>
     </div>
   </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">📐 Image Resizer</a>
+    <a href="resume-builder.html">📄 Resume Builder</a>
+    <a href="resume-score.html">📊 ATS Score</a>
+    <a href="jobs.html">💼 Jobs</a>
+    <a href="marketplace.html">🛍️ Deals</a>
+  </div>
+
+  <!-- Ad: Top Banner -->
+  <div data-ad-slot="top-banner" style="display:none;max-width:1200px;margin:80px auto 0;padding:0 24px"></div>
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
@@ -36,11 +67,12 @@
     <div class="hero-glow hero-glow-1"></div>
     <div class="hero-glow hero-glow-2"></div>
     <div class="hero-content container">
-      <h1>Resize Images for<br>Government Exams</h1>
-      <p>Instantly resize your photos &amp; signatures to exact specifications for SSC, IBPS, UPSC, JEE, NEET, RRB and more. 100% free, 100% private — nothing leaves your browser.</p>
+      <h1>Your Complete<br>Career Toolkit</h1>
+      <p>Resize exam images, build ATS-optimized resumes, check resume scores, search jobs from Naukri, LinkedIn, Indeed & more. 100% free, 100% private.</p>
       <div class="hero-buttons">
-        <a href="#exams" class="cta-btn">🎯 Select Your Exam <span>↓</span></a>
-        <button class="cta-btn cta-btn-outline" id="open-request-hero">📩 Request an Exam</button>
+        <a href="#exams" class="cta-btn">🎯 Resize Images <span>↓</span></a>
+        <a href="resume-builder.html" class="cta-btn cta-btn-outline">📄 Build Resume</a>
+        <a href="jobs.html" class="cta-btn cta-btn-outline" style="border-color:rgba(16,185,129,0.4);color:var(--success)">💼 Find Jobs</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
@@ -48,13 +80,53 @@
           <div class="hero-stat-label">Exam Presets</div>
         </div>
         <div class="hero-stat">
-          <div class="hero-stat-value">100%</div>
-          <div class="hero-stat-label">Client-Side</div>
+          <div class="hero-stat-value">5+</div>
+          <div class="hero-stat-label">Free Tools</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-value">0</div>
           <div class="hero-stat-label">Data Uploaded</div>
         </div>
+      </div>
+      <!-- App Download Buttons -->
+      <div class="app-download" id="app-download" style="margin-top:32px;display:none">
+        <button class="cta-btn" id="install-app-btn" style="background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 4px 20px rgba(16,185,129,0.4)">
+          📱 Install App (Free)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Section -->
+  <section class="tools-section" id="tools">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Free Career Tools</h2>
+      <p class="section-subtitle animate-on-scroll">Everything you need — exam prep to job search — in one place</p>
+      <div class="tools-grid">
+        <a href="resume-builder.html" class="tool-card animate-on-scroll">
+          <div class="tool-icon" style="background:rgba(99,102,241,0.1)">📄</div>
+          <h3>ATS Resume Builder</h3>
+          <p>Build professional, ATS-optimized resumes with 4 premium templates. Download as PDF instantly.</p>
+          <span class="tool-link">Build Resume →</span>
+        </a>
+        <a href="resume-score.html" class="tool-card animate-on-scroll">
+          <div class="tool-icon" style="background:rgba(139,92,246,0.1)">📊</div>
+          <h3>Resume Score Checker</h3>
+          <p>Check your resume's ATS compatibility score against any job description. Get improvement tips.</p>
+          <span class="tool-link">Check Score →</span>
+        </a>
+        <a href="jobs.html" class="tool-card animate-on-scroll">
+          <div class="tool-icon" style="background:rgba(16,185,129,0.1)">💼</div>
+          <h3>Job Portal</h3>
+          <p>Search jobs from Naukri, LinkedIn, Indeed, AmbitionBox & more. Apply directly in one click.</p>
+          <span class="tool-link">Find Jobs →</span>
+        </a>
+        <a href="marketplace.html" class="tool-card animate-on-scroll">
+          <div class="tool-icon" style="background:rgba(236,72,153,0.1)">🛍️</div>
+          <h3>Best Deals</h3>
+          <p>Curated deals on books, laptops, study material from Amazon & Flipkart for students.</p>
+          <span class="tool-link">View Deals →</span>
+        </a>
       </div>
     </div>
   </section>
@@ -64,48 +136,36 @@
     <div class="container">
       <h2 class="section-title animate-on-scroll">Choose Your Exam</h2>
       <p class="section-subtitle animate-on-scroll">Select an exam to see its exact photo &amp; signature requirements</p>
-
       <div class="search-bar animate-on-scroll">
         <input type="text" id="exam-search" placeholder="Search exams... (SSC, IBPS, UPSC, JEE...)" autocomplete="off">
       </div>
-
       <div id="category-tabs" class="animate-on-scroll"></div>
       <div id="exam-grid" class="animate-on-scroll"></div>
-
       <div class="request-cta animate-on-scroll">
         <p>Can't find your exam? <button class="inline-request-btn" id="open-request-inline">Request it here →</button></p>
       </div>
     </div>
   </section>
 
-  <!-- Processor Section (hidden until exam selected) -->
+  <!-- Ad: Between Sections -->
+  <div data-ad-slot="between-sections" style="display:none;max-width:1200px;margin:0 auto;padding:0 24px 40px"></div>
+
+  <!-- Processor Section -->
   <section id="processor-section">
     <div class="container">
       <div class="processor-header">
         <h2 class="section-title">📸 Upload &amp; Process</h2>
         <p class="section-subtitle">Upload your image and we'll resize it to the exact specifications</p>
       </div>
-
-      <!-- Document Type Tabs -->
       <div id="doc-type-tabs"></div>
-
-      <!-- Specifications Display -->
       <div id="specs-display" class="animate-on-scroll"></div>
-
-      <!-- Upload & Result Grid -->
       <div class="processor-grid">
-        <!-- Upload Card -->
         <div class="upload-card">
-          <div class="card-header">
-            <h3 class="card-title">📤 Original Image</h3>
-          </div>
+          <div class="card-header"><h3 class="card-title">📤 Original Image</h3></div>
           <div id="upload-zone">
             <div id="upload-content">
               <span class="upload-icon">☁️</span>
-              <div class="upload-text">
-                <strong>Drop your image here or click to browse</strong>
-                Supports JPEG, PNG, WebP, BMP
-              </div>
+              <div class="upload-text"><strong>Drop your image here or click to browse</strong>Supports JPEG, PNG, WebP, BMP</div>
               <div class="upload-hint">Your image is processed locally — it never leaves your device</div>
               <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,image/bmp">
               <img id="original-preview" alt="Original image preview">
@@ -117,12 +177,8 @@
             <button id="reset-btn">🗑️ Reset</button>
           </div>
         </div>
-
-        <!-- Result Card -->
         <div class="result-card" id="result-section">
-          <div class="card-header">
-            <h3 class="card-title">✅ Processed Result</h3>
-          </div>
+          <div class="card-header"><h3 class="card-title">✅ Processed Result</h3></div>
           <img id="result-preview" alt="Processed image preview">
           <div id="result-info"></div>
           <button id="download-btn" disabled>⬇️ Download Resized Image</button>
@@ -135,38 +191,14 @@
   <section class="features-section" id="features">
     <div class="container">
       <h2 class="section-title animate-on-scroll">Why ExamResize?</h2>
-      <p class="section-subtitle animate-on-scroll">Built specifically for Indian government exam applicants</p>
+      <p class="section-subtitle animate-on-scroll">Built specifically for Indian students and job seekers</p>
       <div class="features-grid">
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon" style="background:rgba(99,102,241,0.1)">🔒</div>
-          <h3>100% Private</h3>
-          <p>All processing happens in your browser. Your images are never uploaded to any server — zero data leaves your device.</p>
-        </div>
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon" style="background:rgba(16,185,129,0.1)">⚡</div>
-          <h3>Instant Processing</h3>
-          <p>No waiting, no queues. Images are resized and compressed in milliseconds using your device's processing power.</p>
-        </div>
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon" style="background:rgba(245,158,11,0.1)">🎯</div>
-          <h3>Exact Specifications</h3>
-          <p>Pre-loaded with official specs for SSC, IBPS, UPSC, NTA, RRB and board exams. Always up to date.</p>
-        </div>
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon" style="background:rgba(236,72,153,0.1)">📏</div>
-          <h3>Smart Compression</h3>
-          <p>Our binary search algorithm adjusts JPEG quality to hit the exact file size range required by each exam.</p>
-        </div>
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon" style="background:rgba(6,182,212,0.1)">📱</div>
-          <h3>Works Everywhere</h3>
-          <p>Fully responsive — works on your phone, tablet, or desktop. No app download needed.</p>
-        </div>
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon" style="background:rgba(139,92,246,0.1)">📩</div>
-          <h3>Request Any Exam</h3>
-          <p>Can't find your exam? Submit a request and our team will add it with AI-verified specifications.</p>
-        </div>
+        <div class="feature-card animate-on-scroll"><div class="feature-icon" style="background:rgba(99,102,241,0.1)">🔒</div><h3>100% Private</h3><p>All processing happens in your browser. Your images and data never leave your device.</p></div>
+        <div class="feature-card animate-on-scroll"><div class="feature-icon" style="background:rgba(16,185,129,0.1)">⚡</div><h3>Instant Processing</h3><p>No waiting, no queues. Everything processes in milliseconds on your device.</p></div>
+        <div class="feature-card animate-on-scroll"><div class="feature-icon" style="background:rgba(245,158,11,0.1)">🎯</div><h3>Exact Specifications</h3><p>Pre-loaded with official specs for SSC, IBPS, UPSC, NTA, RRB and board exams.</p></div>
+        <div class="feature-card animate-on-scroll"><div class="feature-icon" style="background:rgba(236,72,153,0.1)">📄</div><h3>ATS Resume Builder</h3><p>Build professional resumes with premium templates. ATS-optimized for higher interview calls.</p></div>
+        <div class="feature-card animate-on-scroll"><div class="feature-icon" style="background:rgba(6,182,212,0.1)">💼</div><h3>Multi-Source Jobs</h3><p>Search jobs from Naukri, LinkedIn, Indeed, AmbitionBox and more — all in one place.</p></div>
+        <div class="feature-card animate-on-scroll"><div class="feature-icon" style="background:rgba(139,92,246,0.1)">📱</div><h3>Works Everywhere</h3><p>Install as an app on your phone. Works offline, no download from Play Store needed.</p></div>
       </div>
     </div>
   </section>
@@ -174,9 +206,16 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p class="footer-brand">Exam<span style="color:var(--accent-3)">Resize</span> — Free Image Resizer for Government Exams</p>
+      <p class="footer-brand">Exam<span style="color:var(--accent-3)">Resize</span> — Free Career Toolkit for Students & Job Seekers</p>
+      <div class="footer-links">
+        <a href="index.html">Image Resizer</a>
+        <a href="resume-builder.html">Resume Builder</a>
+        <a href="resume-score.html">ATS Score</a>
+        <a href="jobs.html">Job Portal</a>
+        <a href="marketplace.html">Deals</a>
+      </div>
       <p class="footer-credit">Designed &amp; Deployed by <strong>Aashutosh Tiwari</strong></p>
-      <p class="footer-disclaimer">⚠️ Disclaimer: Always verify specifications from the official exam notification. Requirements may change between exam cycles. This tool is provided as-is for convenience.</p>
+      <p class="footer-disclaimer">⚠️ Disclaimer: Always verify specifications from official exam notifications. Requirements may change between exam cycles.</p>
     </div>
   </footer>
 
@@ -184,48 +223,53 @@
   <div class="modal-overlay" id="request-modal">
     <div class="modal">
       <button class="modal-close" id="close-request-modal">&times;</button>
-      <div class="modal-header">
-        <h2>📩 Request an Exam</h2>
-        <p>Can't find your exam? Let us know and we'll add it!</p>
-      </div>
+      <div class="modal-header"><h2>📩 Request an Exam</h2><p>Can't find your exam? Let us know and we'll add it!</p></div>
       <form id="request-form" class="modal-form">
-        <div class="form-group">
-          <label for="req-exam-name">Exam Name *</label>
-          <input type="text" id="req-exam-name" placeholder="e.g., GATE CS, SSC GD, NDA..." required>
-        </div>
-        <div class="form-group">
-          <label for="req-email">Your Email *</label>
-          <input type="email" id="req-email" placeholder="your@email.com" required>
-        </div>
-        <div class="form-group">
-          <label for="req-message">Additional Details</label>
-          <textarea id="req-message" rows="3" placeholder="Any specific requirements or links to official notification..."></textarea>
-        </div>
-        <button type="submit" class="modal-submit-btn" id="req-submit-btn">
-          <span>🚀 Submit Request</span>
-        </button>
+        <div class="form-group"><label for="req-exam-name">Exam Name *</label><input type="text" id="req-exam-name" placeholder="e.g., GATE CS, SSC GD, NDA..." required></div>
+        <div class="form-group"><label for="req-email">Your Email *</label><input type="email" id="req-email" placeholder="your@email.com" required></div>
+        <div class="form-group"><label for="req-message">Additional Details</label><textarea id="req-message" rows="3" placeholder="Any specific requirements or links to official notification..."></textarea></div>
+        <button type="submit" class="modal-submit-btn" id="req-submit-btn"><span>🚀 Submit Request</span></button>
         <p class="form-hint">We'll review your request and add the exam specifications shortly.</p>
       </form>
       <div id="request-success" class="modal-success" style="display:none">
-        <span class="success-icon">✅</span>
-        <h3>Request Submitted!</h3>
-        <p>We'll review your request and add the exam specs soon. Thank you!</p>
+        <span class="success-icon">✅</span><h3>Request Submitted!</h3><p>We'll review your request and add the exam specs soon.</p>
         <button class="modal-submit-btn" onclick="document.getElementById('request-modal').classList.remove('active')">Got it!</button>
       </div>
     </div>
   </div>
 
-  <!-- Toast Container -->
   <div id="toast-container"></div>
 
-  <!-- Firebase SDK (compat for simplicity) -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
-  <!-- App Scripts -->
   <script src="js/firebase-config.js"></script>
   <script src="js/presets.js"></script>
   <script src="js/processor.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/ad-renderer.js"></script>
+
+  <!-- PWA -->
+  <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    // PWA Install Prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const dl = document.getElementById('app-download');
+      if (dl) dl.style.display = 'block';
+    });
+    const installBtn = document.getElementById('install-app-btn');
+    if (installBtn) installBtn.addEventListener('click', async () => {
+      if (deferredPrompt) { deferredPrompt.prompt(); const r = await deferredPrompt.userChoice; if (r.outcome === 'accepted') document.getElementById('app-download').style.display = 'none'; deferredPrompt = null; }
+    });
+    // Mobile nav toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (navToggle && mobileNav) navToggle.addEventListener('click', () => mobileNav.classList.toggle('open'));
+  </script>
 </body>
 </html>

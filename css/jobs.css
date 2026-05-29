@@ -1,0 +1,62 @@
+/* ═══ Job Portal Styles ═══ */
+.jobs-hero{padding:110px 24px 40px;text-align:center;max-width:900px;margin:0 auto}
+.jobs-hero h1{font-size:2.5rem;font-weight:800;background:var(--gradient-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.jobs-hero p{color:var(--text-secondary);font-size:1.05rem;margin-bottom:24px}
+
+/* Search Bar */
+.jobs-search{max-width:900px;margin:0 auto 24px;padding:0 24px}
+.jobs-search-inner{display:flex;gap:10px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-xl);padding:8px;flex-wrap:wrap}
+.jobs-search-inner input,.jobs-search-inner select{flex:1;min-width:140px;padding:12px 16px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-md);color:var(--text-primary);font-size:0.9rem;transition:border-color 0.3s}
+.jobs-search-inner input:focus,.jobs-search-inner select:focus{border-color:var(--accent-1);outline:none}
+.jobs-search-inner input::placeholder{color:var(--text-muted)}
+.jobs-search-btn{padding:12px 28px;background:var(--gradient-btn);color:#fff;border-radius:var(--radius-md);font-weight:600;border:none;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.jobs-search-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(99,102,241,0.4)}
+
+/* Filter Chips */
+.jobs-filters{max-width:900px;margin:0 auto 24px;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.job-filter-chip{padding:6px 16px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:20px;color:var(--text-secondary);font-size:0.8rem;font-weight:500;cursor:pointer;transition:all 0.2s;border:none}
+.job-filter-chip.active{background:var(--gradient-btn);color:#fff}
+.job-filter-chip:hover:not(.active){background:rgba(99,102,241,0.1)}
+
+/* Platform Links */
+.jobs-platforms{max-width:900px;margin:0 auto 32px;padding:0 24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.platform-link{display:flex;align-items:center;gap:6px;padding:8px 18px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md);color:var(--text-secondary);font-size:0.8rem;font-weight:500;text-decoration:none;transition:all 0.2s}
+.platform-link:hover{border-color:rgba(99,102,241,0.3);color:var(--text-primary);transform:translateY(-1px)}
+.platform-link img{width:16px;height:16px;border-radius:3px}
+
+/* Tabs */
+.jobs-tabs{max-width:900px;margin:0 auto 24px;padding:0 24px;display:flex;gap:8px}
+.jobs-tab{padding:8px 20px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-xl);color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:all 0.2s;cursor:pointer;border:none}
+.jobs-tab.active{background:var(--gradient-btn);color:#fff}
+
+/* Job Grid */
+.jobs-grid{max-width:900px;margin:0 auto;padding:0 24px 60px;display:grid;gap:16px}
+.job-card{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-lg);padding:24px;transition:all 0.3s;position:relative}
+.job-card:hover{transform:translateY(-2px);border-color:rgba(99,102,241,0.2);box-shadow:var(--shadow-glow)}
+.job-card-header{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:8px}
+.job-title{font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:700;color:var(--text-primary)}
+.job-bookmark{background:none;border:none;font-size:1.3rem;cursor:pointer;transition:transform 0.2s;padding:4px}
+.job-bookmark:hover{transform:scale(1.2)}
+.job-company{font-size:0.9rem;color:var(--accent-3);font-weight:500;margin-bottom:10px}
+.job-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.job-tag{padding:4px 10px;background:rgba(255,255,255,0.05);border-radius:12px;font-size:0.75rem;color:var(--text-muted)}
+.job-tag.salary{color:var(--success);background:rgba(16,185,129,0.1)}
+.job-tag.remote{color:#06b6d4;background:rgba(6,182,212,0.1)}
+.job-desc{font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.job-actions{display:flex;gap:10px;align-items:center}
+.job-apply-btn{padding:8px 24px;background:var(--gradient-btn);color:#fff;border-radius:var(--radius-md);font-weight:600;font-size:0.85rem;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:6px}
+.job-apply-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(99,102,241,0.3);color:#fff}
+.job-source{font-size:0.75rem;color:var(--text-muted)}
+
+/* Skeleton Loading */
+.job-skeleton{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-lg);padding:24px}
+.skel-line{height:14px;background:rgba(255,255,255,0.06);border-radius:8px;margin-bottom:10px;animation:shimmer 1.5s infinite}
+.skel-line.short{width:40%}
+.skel-line.medium{width:70%}
+@keyframes shimmer{0%{opacity:0.3}50%{opacity:0.6}100%{opacity:0.3}}
+
+.jobs-empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.jobs-empty span{font-size:3rem;display:block;margin-bottom:12px}
+
+.jobs-load-more{display:block;margin:0 auto 40px;padding:12px 32px;background:var(--bg-glass);border:1px solid var(--border-glass);color:var(--text-secondary);border-radius:var(--radius-xl);font-weight:500;cursor:pointer;transition:all 0.2s}
+.jobs-load-more:hover{background:rgba(99,102,241,0.1);color:var(--text-primary)}

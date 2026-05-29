@@ -1,0 +1,137 @@
+/* ═══ Resume Builder Styles ═══ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+/* ── Wizard Layout ── */
+.rb-layout{display:grid;grid-template-columns:400px 1fr;gap:32px;min-height:calc(100vh - 80px);padding:100px 24px 60px;max-width:1400px;margin:0 auto}
+@media(max-width:1024px){.rb-layout{grid-template-columns:1fr;padding:90px 16px 40px}}
+
+/* ── Progress Bar ── */
+.rb-progress{display:flex;gap:4px;margin-bottom:24px}
+.rb-progress-step{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,0.08);transition:background 0.4s ease}
+.rb-progress-step.active{background:var(--gradient-btn)}
+.rb-progress-step.done{background:var(--success)}
+
+/* ── Step Indicators ── */
+.rb-steps{display:flex;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:8px}
+.rb-step-dot{display:flex;align-items:center;gap:8px;padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:500;color:var(--text-muted);background:rgba(255,255,255,0.04);border:1px solid transparent;transition:all 0.3s ease;cursor:pointer}
+.rb-step-dot.active{color:#fff;background:var(--gradient-btn);border-color:var(--accent-1)}
+.rb-step-dot.done{color:var(--success);border-color:rgba(16,185,129,0.3)}
+
+/* ── Form Panel ── */
+.rb-form-panel{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-lg);padding:28px;backdrop-filter:blur(10px);overflow-y:auto;max-height:calc(100vh - 140px)}
+.rb-form-panel h2{font-size:1.4rem;margin-bottom:6px;background:var(--gradient-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rb-form-panel .step-desc{color:var(--text-secondary);font-size:0.85rem;margin-bottom:20px}
+
+/* ── Form Fields ── */
+.rb-field{margin-bottom:16px}
+.rb-field label{display:block;font-size:0.8rem;font-weight:500;color:var(--text-secondary);margin-bottom:6px}
+.rb-field input,.rb-field textarea,.rb-field select{width:100%;padding:11px 14px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-md);color:var(--text-primary);font-size:0.9rem;transition:border-color 0.3s,box-shadow 0.3s;font-family:inherit}
+.rb-field input:focus,.rb-field textarea:focus{border-color:var(--accent-1);box-shadow:0 0 0 3px rgba(99,102,241,0.15);outline:none}
+.rb-field input::placeholder,.rb-field textarea::placeholder{color:var(--text-muted)}
+.rb-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.rb-row{grid-template-columns:1fr}}
+
+/* ── Repeatable Items (Experience, Education, etc) ── */
+.rb-item-card{background:rgba(255,255,255,0.03);border:1px solid var(--border-glass);border-radius:var(--radius-md);padding:16px;margin-bottom:12px;position:relative}
+.rb-item-card .rb-remove-btn{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;background:rgba(239,68,68,0.1);color:var(--error);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.2s;cursor:pointer;border:none}
+.rb-item-card .rb-remove-btn:hover{background:rgba(239,68,68,0.25)}
+.rb-add-btn{width:100%;padding:10px;background:rgba(99,102,241,0.08);color:var(--accent-3);border:1px dashed rgba(99,102,241,0.3);border-radius:var(--radius-md);font-size:0.85rem;font-weight:500;transition:all 0.2s;cursor:pointer}
+.rb-add-btn:hover{background:rgba(99,102,241,0.15)}
+
+/* ── Skill Tags ── */
+.rb-skills-input-wrap{display:flex;gap:8px}
+.rb-skills-input-wrap input{flex:1}
+.rb-skills-input-wrap button{padding:0 16px;background:var(--gradient-btn);color:#fff;border-radius:var(--radius-md);font-weight:600;white-space:nowrap;border:none;cursor:pointer}
+.rb-skill-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.rb-skill-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(139,92,246,0.12);color:var(--accent-3);border-radius:20px;font-size:0.8rem;font-weight:500}
+.rb-skill-tag button{background:none;border:none;color:var(--error);font-size:0.9rem;cursor:pointer;padding:0;line-height:1}
+
+/* ── Nav Buttons ── */
+.rb-nav{display:flex;gap:12px;margin-top:24px}
+.rb-nav button{flex:1;padding:12px;border-radius:var(--radius-md);font-weight:600;font-size:0.9rem;transition:all 0.2s;cursor:pointer;border:none}
+.rb-btn-prev{background:var(--bg-glass);color:var(--text-secondary);border:1px solid var(--border-glass)}
+.rb-btn-prev:hover{background:rgba(255,255,255,0.1)}
+.rb-btn-next{background:var(--gradient-btn);color:#fff}
+.rb-btn-next:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(99,102,241,0.4)}
+
+/* ── Template Selector ── */
+.rb-templates{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.rb-template-card{border:2px solid var(--border-glass);border-radius:var(--radius-md);padding:16px;text-align:center;cursor:pointer;transition:all 0.3s}
+.rb-template-card:hover{border-color:rgba(99,102,241,0.3)}
+.rb-template-card.selected{border-color:var(--accent-1);background:rgba(99,102,241,0.08)}
+.rb-template-card .tpl-icon{font-size:2rem;margin-bottom:8px;display:block}
+.rb-template-card .tpl-name{font-weight:600;font-size:0.9rem}
+.rb-template-card .tpl-desc{font-size:0.75rem;color:var(--text-muted);margin-top:4px}
+
+/* ── Preview Panel ── */
+.rb-preview-panel{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-lg);overflow:hidden;position:sticky;top:90px}
+.rb-preview-toolbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(255,255,255,0.04);border-bottom:1px solid var(--border-glass)}
+.rb-preview-toolbar span{font-size:0.85rem;font-weight:600;color:var(--text-secondary)}
+.rb-download-btn{padding:8px 20px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-radius:var(--radius-md);font-weight:600;font-size:0.8rem;border:none;cursor:pointer;transition:all 0.2s}
+.rb-download-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(16,185,129,0.3)}
+.rb-preview-frame{padding:24px;min-height:600px;overflow-y:auto;max-height:calc(100vh - 180px)}
+.rb-save-indicator{font-size:0.75rem;color:var(--success);display:flex;align-items:center;gap:4px}
+
+/* ═══ Resume Template Styles (Inside Preview) ═══ */
+
+/* Template: Modern */
+.resume-modern{font-family:'Inter',sans-serif;color:#1a1a2e;background:#fff;padding:32px;font-size:11px;line-height:1.6}
+.resume-modern .r-header{text-align:center;margin-bottom:20px;padding-bottom:16px;border-bottom:3px solid #6366f1}
+.resume-modern .r-name{font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;color:#1a1a2e;margin-bottom:4px}
+.resume-modern .r-title{font-size:13px;color:#6366f1;font-weight:600;margin-bottom:8px}
+.resume-modern .r-contact{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;font-size:10px;color:#555}
+.resume-modern .r-section{margin-bottom:16px}
+.resume-modern .r-section-title{font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
+.resume-modern .r-entry{margin-bottom:10px}
+.resume-modern .r-entry-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap}
+.resume-modern .r-entry-title{font-weight:700;font-size:12px}
+.resume-modern .r-entry-sub{color:#6366f1;font-size:11px;font-weight:500}
+.resume-modern .r-entry-date{color:#888;font-size:10px}
+.resume-modern .r-entry-desc{color:#444;font-size:10.5px;margin-top:4px}
+.resume-modern .r-skills-list{display:flex;flex-wrap:wrap;gap:6px}
+.resume-modern .r-skill{padding:3px 10px;background:#f0f0ff;color:#6366f1;border-radius:12px;font-size:10px;font-weight:500}
+
+/* Template: Classic */
+.resume-classic{font-family:'Georgia',serif;color:#222;background:#fff;padding:32px;font-size:11px;line-height:1.7}
+.resume-classic .r-header{margin-bottom:16px;border-bottom:2px solid #222}
+.resume-classic .r-name{font-size:22px;font-weight:700}
+.resume-classic .r-contact{font-size:10px;color:#555;margin-top:4px}
+.resume-classic .r-section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;border-bottom:1px solid #ccc;padding-bottom:3px}
+.resume-classic .r-entry{margin-bottom:10px}
+.resume-classic .r-entry-title{font-weight:700;font-size:12px}
+.resume-classic .r-entry-sub{font-style:italic;color:#555;font-size:11px}
+.resume-classic .r-entry-date{float:right;color:#888;font-size:10px}
+.resume-classic .r-skills-list{columns:3;font-size:10.5px}
+.resume-classic .r-skill{display:block;margin-bottom:3px}
+
+/* Template: Minimal */
+.resume-minimal{font-family:'Inter',sans-serif;color:#333;background:#fff;padding:32px;font-size:11px;line-height:1.6}
+.resume-minimal .r-header{margin-bottom:20px}
+.resume-minimal .r-name{font-size:20px;font-weight:300;letter-spacing:3px;text-transform:uppercase}
+.resume-minimal .r-title{font-size:11px;color:#888;letter-spacing:1px;margin-top:2px}
+.resume-minimal .r-contact{font-size:10px;color:#888;margin-top:6px}
+.resume-minimal .r-section{margin-bottom:16px}
+.resume-minimal .r-section-title{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:#888;margin-bottom:8px}
+.resume-minimal .r-entry{margin-bottom:10px;padding-left:12px;border-left:2px solid #ddd}
+.resume-minimal .r-entry-title{font-weight:600;font-size:11.5px}
+.resume-minimal .r-skills-list{display:flex;flex-wrap:wrap;gap:8px}
+.resume-minimal .r-skill{font-size:10px;color:#666}
+.resume-minimal .r-skill::after{content:'•';margin-left:8px;color:#ccc}
+.resume-minimal .r-skill:last-child::after{content:''}
+
+/* Template: Professional */
+.resume-professional{font-family:'Inter',sans-serif;color:#1a1a2e;background:#fff;padding:0;font-size:11px;line-height:1.6;display:grid;grid-template-columns:200px 1fr}
+.resume-professional .r-sidebar{background:#1a1a2e;color:#e0e0e0;padding:28px 20px}
+.resume-professional .r-sidebar .r-name{font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
+.resume-professional .r-sidebar .r-title{font-size:10px;color:var(--accent-3,#a78bfa);margin-bottom:16px;font-weight:500}
+.resume-professional .r-sidebar .r-section-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#8b5cf6;margin-bottom:8px;margin-top:16px}
+.resume-professional .r-sidebar .r-contact{font-size:9.5px;color:#bbb}
+.resume-professional .r-sidebar .r-contact div{margin-bottom:6px}
+.resume-professional .r-sidebar .r-skills-list{display:flex;flex-wrap:wrap;gap:4px}
+.resume-professional .r-sidebar .r-skill{padding:2px 8px;background:rgba(139,92,246,0.2);color:#c4b5fd;border-radius:8px;font-size:9px}
+.resume-professional .r-main{padding:28px 24px}
+.resume-professional .r-main .r-section-title{font-size:13px;font-weight:700;color:#6366f1;border-bottom:2px solid #6366f1;padding-bottom:4px;margin-bottom:10px}
+.resume-professional .r-entry{margin-bottom:12px}
+.resume-professional .r-entry-header{display:flex;justify-content:space-between;flex-wrap:wrap}
+.resume-professional .r-entry-title{font-weight:700;font-size:12px}
+.resume-professional .r-entry-date{color:#888;font-size:10px}

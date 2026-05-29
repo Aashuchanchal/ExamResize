@@ -1,0 +1,34 @@
+/* ═══ Marketplace Styles ═══ */
+.mp-hero{padding:110px 24px 40px;text-align:center;max-width:800px;margin:0 auto}
+.mp-hero h1{font-size:2.5rem;font-weight:800;background:var(--gradient-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.mp-hero p{color:var(--text-secondary);font-size:1.05rem}
+
+.mp-filters{max-width:1200px;margin:0 auto 32px;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.mp-filter{padding:8px 18px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:20px;color:var(--text-secondary);font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.2s;border:none}
+.mp-filter.active{background:var(--gradient-btn);color:#fff}
+.mp-filter:hover:not(.active){background:rgba(99,102,241,0.1)}
+
+.mp-grid{max-width:1200px;margin:0 auto;padding:0 24px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.mp-card{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-lg);overflow:hidden;transition:all 0.3s;display:flex;flex-direction:column}
+.mp-card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,0.2);box-shadow:var(--shadow-glow)}
+.mp-card-img{width:100%;height:200px;object-fit:contain;background:rgba(255,255,255,0.95);padding:16px}
+.mp-card-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.mp-card-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:0.7rem;font-weight:600;margin-bottom:8px;width:fit-content}
+.mp-badge-amazon{background:rgba(255,153,0,0.12);color:#ff9900}
+.mp-badge-flipkart{background:rgba(47,128,237,0.12);color:#2f80ed}
+.mp-badge-other{background:rgba(99,102,241,0.12);color:var(--accent-1)}
+.mp-card-title{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mp-card-desc{font-size:0.8rem;color:var(--text-muted);margin-bottom:12px;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mp-card-price{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.mp-price{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:800;color:var(--success)}
+.mp-original-price{font-size:0.85rem;color:var(--text-muted);text-decoration:line-through}
+.mp-discount{padding:2px 8px;background:rgba(239,68,68,0.12);color:var(--error);border-radius:8px;font-size:0.75rem;font-weight:700}
+.mp-buy-btn{display:block;width:100%;padding:12px;background:var(--gradient-btn);color:#fff;border-radius:var(--radius-md);font-weight:600;font-size:0.9rem;text-align:center;text-decoration:none;transition:all 0.2s}
+.mp-buy-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(99,102,241,0.4);color:#fff}
+.mp-buy-btn.amazon{background:linear-gradient(135deg,#ff9900,#e68a00)}
+.mp-buy-btn.flipkart{background:linear-gradient(135deg,#2f80ed,#1a60cc)}
+
+.mp-empty{text-align:center;padding:80px 20px;color:var(--text-muted);grid-column:1/-1}
+.mp-empty span{font-size:3rem;display:block;margin-bottom:12px}
+
+.mp-disclaimer{max-width:800px;margin:0 auto 40px;padding:0 24px;text-align:center;font-size:0.75rem;color:var(--text-muted)}
